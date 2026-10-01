@@ -1,0 +1,40 @@
+import Hero from '../components/secciones/Hero'
+import QuienesSomos from "../components/secciones/QuienesSomos"
+import Servicios from '../components/secciones/Servicios'
+import Galeria from '../components/Galeria'
+import Cotizador from '../components/secciones/Cotizador'
+import FormularioContacto from '../components/secciones/FormularioContacto'
+import '../styles/home.css'
+
+function Home() {
+    return (
+        <main className="home">
+
+            <section id="hero" className="home-section home-section--hero">
+                <Hero />
+            </section>
+
+            <section id="quienes-somos" className="home-section">
+                <QuienesSomos />
+            </section>
+
+            <section id="servicios" className="home-section home-section--light">
+                <Servicios />
+            </section>
+
+            <section id="proyectos" className="home-section">
+                <Galeria />
+            </section>
+
+            <section id="cotizador" className="home-section home-section--light">
+                <Cotizador />
+            </section>
+
+            <section id="contacto" className="home-section">
+                <FormularioContacto />
+            </section>
+        </main>
+    )
+}
+
+export default Home

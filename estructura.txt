@@ -1,0 +1,218 @@
+Estructura: 
+
+1. header fijo con menú (menú componente no?) - componente
+2. hero bueno y contundente. 
+3. quiénes somos
+4. servicios que prestamos --> service.jsx que recorre y renderiza un array de las TarjetaServicio. 
+5. Cotizador.jsx que es una calculadora de cotizaciones, un componente con estado y cálculo.
+5. galería de proyectos por tipo de trabajo prestado, Galeria.jxs TarjetaProyecto, agrupado por categoría 
+6. métodos de pago, una sección con logos y texto, simple. 
+7. contacto con un formulario que funcione de verdad con emailjs
+8. footer
+
+Para un extra, haré una calculadora de cotizador interactivo por m2 por servicio que elija. Esto supongo que es un componente. 
+
+
+Paleta de colores: naranja con gris. #F39A15, #D6D6D6, #FFFFFF, #FFC423, #000000
+Títulos: Poppins (bold), da un aire moderno y fuerte
+Texto: Inter o Open Sans, muy legible en párrafos largos
+
+colores ordenados en principal: 
+1. F39A15
+2. FFC423 : detalles puntuales`
+3. 1A1A1A`
+4. blanco
+
+
+lucide-react
+
+
+
+
+
+Para las TarjetaServicio.jsx
+
+1. foto de referencia
+2. título del servicio
+3. descripción del servicio
+4. precio base / rango de referencia
+5. calculadora dinámica por m2, input para el usuario
+6. botones CTA para correo y whatsapp (deben ser funcionales, como los de formulario y uno para whatsapp que a mi numero (como si yo fuera la constructora) le deje un mensaje pre escrito de lo que estoy consultando)
+
+
+
+1. Construcción de Viviendas Integrales
+[ 📷 ESPACIO PARA FOTO: Casa de dos pisos / Fachada moderna ]
+Descripción: Construcción de viviendas completas y casas de dos pisos llave en mano. Cumplimiento estricto de normativas vigentes y trabajo colaborativo junto a arquitectos y proyectistas.
+Precio referencia: Desde $480.000 / m² (Mano de obra y gestión)
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² a construir: ____ ]
+Cálculo estimado: $ [ Resultado ] (Valor base x m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+2. Ampliaciones y Albañilería Estructural
+[ 📷 ESPACIO PARA FOTO: Muro de ladrillos / Estructura en proceso ]
+Descripción: Ampliaciones de espacios, estructuras soportantes, levantamiento de muros, nivelación de suelos y radieres. Ejecución técnica, puntual y con terminaciones de alta durabilidad.
+Precio referencia: Desde $125.000 a $145.000 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² de ampliación: ____ ]
+Cálculo estimado: $ [ Resultado ] (Basado en $135.000/m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+3. Remodelaciones Integrales
+[ 📷 ESPACIO PARA FOTO: Baño/Cocina remodelada con porcelanato ]
+Descripción: Renovación total de ambientes: instalación de cerámica y porcelanatos, pintura general, preparación de radieres y diseño de quincho/áreas comunes.
+Precio referencia: Desde $42.000 a $68.000 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² a remodelar: ____ ]
+Cálculo estimado: $ [ Resultado ] (Basado en $55.000/m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+4. Pavimento Estampado
+[ 📷 ESPACIO PARA FOTO: Patios o entradas con hormigón estampado ]
+Descripción: Aplicación de pavimento estampado de alta resistencia, incluyendo preparación de terreno, estabilizado y acabados texturizados a elección.
+Precios según modalidad:
+Preparación + Estampado: $31.500 a $34.000 / m²
+Solo Estampado: $24.000 a $27.500 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Selecciona modalidad: ( Prep + Estampado | Solo Estampado ) ]
+[ Ingresa los m²: ____ ]
+Cálculo estimado: $ [ Resultado ]
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+5. Construcciones Menores y Mantención
+[ 📷 ESPACIO PARA FOTO: Trabajos de mantención / Arreglos estructurales ]
+Descripción: Mantención preventiva y correctiva para propiedades, reparaciones diversas y obras menores adaptadas a las condiciones de tu terreno.
+Precio referencia: Desde $10.500 a $13.000 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² del área: ____ ]
+Cálculo estimado: $ [ Resultado ] (Basado en $11.500/m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+6. Pintura Interior, Exterior y Restauración
+[ 📷 ESPACIO PARA FOTO: Muro recién pintado interior/exterior ]
+Descripción: Pintado profesional a dos manos para interiores y fachadas exteriores. Servicio opcional de restauración y emparejado profundo de muros dañados.
+Precios según modalidad:
+Pintado 2 manos: $7.500 a $8.500 / m²
+Restauración de muros + Pintura: $14.500 a $17.500 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Selecciona tipo de trabajo: ( Pintado 2 manos | Restauración + Pintura ) ]
+[ Ingresa m² de muros: ____ ]
+Cálculo estimado: $ [ Resultado ]
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+7. Terrazas, Logias y Quinchos desde Cero
+[ 📷 ESPACIO PARA FOTO: Quincho moderno con terraza techada ]
+Descripción: Diseño y construcción completa de espacios de recreación y servicio (terrazas, logias y quinchos) hechos a medida desde la fundación hasta las terminaciones.
+Precio referencia: $185.000 a $205.000 / m²
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² del proyecto: ____ ]
+Cálculo estimado: $ [ Resultado ] (Basado en $195.000/m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+8. Construcciones Modulares
+[ 📷 ESPACIO PARA FOTO: Módulo habitacional / Casa modular ]
+Descripción: Montaje y edificación de estructuras modulares rápidas y eficientes. Servicio enfocado en mano de obra especializada con altos estándares de ensamblaje.
+Precio referencia: $155.000 a $175.000 / m² (Solo mano de obra)
+🧮 Calculadora de Presupuesto Estimado:
+
+[ Ingresa los m² modulares: ____ ]
+Cálculo estimado: $ [ Resultado ] (Basado en $165.000/m²)
+Acciones:
+[ 🟢 Cotizar por WhatsApp ]
+[ ✉️ Cotizar por Correo ]
+
+
+
+Funcionamiento del Botón/Calculadora:
+En JavaScript puedes establecer una variable precioBase por cada tarjeta (por ejemplo $195.000).
+Al escribir el número en el campo input de los $m^2$, el total se actualiza en tiempo real (live preview).
+
+Integración con WhatsApp:
+Al hacer clic en "Cotizar por WhatsApp", el enlace puede llevar un mensaje predefinido que incluya el cálculo realizado:
+[https://wa.me/569XXXXXXXX?text=Hola,%20me%20interesa%20el%20servicio%20de%20Terrazas.%20Calculé%20un%20aproximado%20para%2020m2](https://wa.me/569XXXXXXXX?text=Hola,%20me%20interesa%20el%20servicio%20de%20Terrazas.%20Calculé%20un%20aproximado%20para%2020m2).
+
+
+
+Lista de imagenes de los servicios: 
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\construcciones-menores-mantencion.webp"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\pavimento-estampado.jpeg"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\pintura-exterior-etc.webp"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\remodelaciones-integrales.png"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\terraza.avif"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\viviendas-integraleswebp.webp"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\ampliaciones.jpg"
+"C:\Users\conyp\Desktop\proyecto\PROYECTOS 2026\Proyecto Páginas Web\Página-Constructora\src\assets\casas-modulares.jpg"
+
+
+1. Construcción de Viviendas Integrales: src/assets/viviendas-integraleswebp.webp
+2. Ampliaciones y Albañilería Estructural: src/assets/ampliaciones.jpg
+3. Remodelaciones Integrales: src/assets/remodelaciones-integrales.png
+4. Pavimento Estampado: src/assets/pavimento-estampado.jpeg
+5. Construcciones Menores y Mantención: src/assets/construcciones-menores-mantencion.webp
+6. Pintura Interior, Exterior y Restauración: src/assets/pintura-exterior-etc.webp
+7. Terrazas, Logias y Quinchos desde Cero: src/assets/terraza.avif
+8. Construcciones Modulares: src/assets/casas-modulares.jpg
+
+
+
+
+
+
+
+
+Como funciona el cotizador: 
+Servicios y rango de precio por m² (números ficticios pero realistas para el rubro chileno, ajustables después):
+
+Servicio	Precio por m²	Mínimo	Incluye
+Construcción de vivienda	$220.000 – $260.000	40 m²	Mano de obra + materiales base
+Ampliación / albañilería	$180.000 – $210.000	15 m²	Mano de obra + materiales base
+Remodelación (cerámica, pintura, radier)	$25.000 – $35.000	10 m²	Mano de obra, materiales aparte
+Pavimento estampado	$28.000 – $33.000	20 m²	Preparación + estampado
+Pintura interior/exterior	$7.000 – $9.000	30 m²	Dos manos, materiales aparte
+Logia / terraza / quincho desde cero	$190.000 – $210.000	12 m²	Estructura completa
+Construcción modular	$160.000 – $185.000	25 m²	Solo mano de obra, sin materiales
+
+Fórmula base:
+
+estimacionMinima = precioMinM2 × metrosCuadrados
+estimacionMaxima = precioMaxM2 × metrosCuadrados
+
+si metrosCuadrados < minimoDelServicio:
+    usar minimoDelServicio como base del cálculo
+    (o mostrar aviso: "este servicio tiene un mínimo de X m²")
+
+Así el resultado nunca es un número único falso-preciso, sino un rango, que además es más honesto porque ningún presupuesto real es una cifra exacta sin ver el terreno.
+
+Extras, como checkboxes opcionales que suman un porcentaje o monto fijo sobre el rango:
+
+Extra	Efecto
+Urgencia (inicio en menos de 15 días)	+15% sobre el rango
+Fuera de la Región Metropolitana	+$80.000 fijo (traslado)
+Materiales premium (no estándar)	+20% sobre el rango
+
+Qué NO incluye (esto es importante mostrarlo igual, da seriedad):
+
+Permisos municipales y trámites
+Visita técnica previa (se ofrece gratis, pero se agenda aparte)
+Materiales en los servicios donde se indique "materiales aparte"
+
+Texto de disclaimer, que va fijo bajo el resultado del cálculo, chico pero visible:
+
+Este valor es una estimación referencial calculada automáticamente. El precio final se define tras una visita técnica gratuita, considerando el estado del terreno y los materiales elegidos. No constituye una cotización formal.
+
+Con esto ya tenemos los datos que van a vivir en un array de objetos dentro de QuoteCalculator.jsx, cada servicio con { nombre, precioMin, precioMax, minimoM2 }, y el cálculo se hace con useState para el servicio elegido, los m², y los extras marcados.

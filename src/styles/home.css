@@ -1,0 +1,28 @@
+.home {
+  padding-top: 72px; /* mismo alto que el header fixed, para que no tape el contenido */
+}
+
+.home-section {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-section--light {
+  background-color: #FAFAFA;
+  max-width: 100%;
+  margin: 0;
+}
+
+.home-section--light > * {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* HERO SECTION */
+.home-section--hero {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
