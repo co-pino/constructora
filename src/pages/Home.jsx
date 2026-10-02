@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Hero from '../components/secciones/Hero'
 import QuienesSomos from "../components/secciones/QuienesSomos"
 import Servicios from '../components/secciones/Servicios'
@@ -7,6 +8,8 @@ import FormularioContacto from '../components/secciones/FormularioContacto'
 import '../styles/home.css'
 
 function Home() {
+    const [selectedServiceId, setSelectedServiceId] = useState('')
+
     return (
         <main className="home">
 
@@ -19,7 +22,7 @@ function Home() {
             </section>
 
             <section id="servicios" className="home-section home-section--light">
-                <Servicios />
+                <Servicios onQuote={setSelectedServiceId} />
             </section>
 
             <section id="proyectos" className="home-section">
@@ -27,7 +30,11 @@ function Home() {
             </section>
 
             <section id="cotizador" className="home-section home-section--light">
-                <Cotizador />
+                <Cotizador
+                    key={selectedServiceId || 'ningun-servicio'}
+                    selectedServiceId={selectedServiceId}
+                    onServiceChange={setSelectedServiceId}
+                />
             </section>
 
             <section id="contacto" className="home-section">

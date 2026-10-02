@@ -2,7 +2,7 @@ import TarjetaServicios from '../TarjetaServicios'
 import { servicios } from '../../data/servicios'
 import '../../styles/servicios.css'
 
-function Servicios() {
+function Servicios({ onQuote }) {
   return (
     <div className="servicios">
       <p className="servicios-eyebrow">Lo que hacemos</p>
@@ -13,7 +13,7 @@ function Servicios() {
 
       <div className="servicios-grid">
         {servicios.map((servicio) => (
-          <TarjetaServicios key={servicio.nombre} {...servicio} />
+          <TarjetaServicios key={servicio.id} {...servicio} onQuote={onQuote} />
         ))}
       </div>
     </div>

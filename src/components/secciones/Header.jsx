@@ -19,7 +19,7 @@ function Header() {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a href="#top" className="header-logo" onClick={closeMenu}>
+        <a href="#hero" className="header-logo" onClick={closeMenu}>
           <img src={logo} alt="Logo constructora" className="header-logo-img" />
         </a>
 

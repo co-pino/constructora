@@ -1,17 +1,25 @@
 import { useState } from 'react'
+import { Mail, MessageCircle } from 'lucide-react'
 import { servicios, extras } from '../../data/servicios'
 import { calcularRangoBase, aplicarExtras, formatearCLP } from '../../utils/calculadora-cotizacion'
+import { contacto } from '../../data/contacto'
 import '../../styles/cotizador.css'
 
-function Cotizador() {
-  const [servicioIndex, setServicioIndex] = useState('')
+function Cotizador({ selectedServiceId, onServiceChange }) {
   const [modalidadIndex, setModalidadIndex] = useState(0)
   const [metrosCuadrados, setMetrosCuadrados] = useState('')
   const [extrasSeleccionados, setExtrasSeleccionados] = useState([])
 
-  const servicio = servicioIndex !== '' ? servicios[servicioIndex] : null
+  const serviciosCotizables = servicios.filter((item) => item.cotizable !== false)
+  const servicio = serviciosCotizables.find((item) => item.id === selectedServiceId) ?? null
   const tieneModalidades = servicio?.modalidades?.length > 0
   const baseServicio = tieneModalidades ? servicio.modalidades[modalidadIndex] : servicio
+  const extrasDisponibles = extras.filter(
+    (extra) => !extra.requiereMateriales || servicio?.incluyeMateriales
+  )
+  const extrasAplicables = extrasSeleccionados.filter((id) =>
+    extrasDisponibles.some((extra) => extra.id === id)
+  )
 
   const m2Numero = Number(metrosCuadrados) || 0
   const puedeCalcular = servicio && m2Numero > 0
@@ -20,8 +28,28 @@ function Cotizador() {
   if (puedeCalcular) {
     const servicioParaCalculo = { ...baseServicio, minimoM2: servicio.minimoM2 }
     const rango = calcularRangoBase(servicioParaCalculo, m2Numero)
-    resultado = aplicarExtras(rango, extrasSeleccionados, extras)
+    resultado = aplicarExtras(rango, extrasAplicables, extrasDisponibles)
   }
+
+  const modalidadSeleccionada = tieneModalidades ? servicio.modalidades[modalidadIndex].nombre : null
+  const mensajeCotizacion = resultado
+    ? [
+        'Hola, quiero solicitar una cotización para mi proyecto.',
+        `Servicio: ${servicio.nombre}`,
+        modalidadSeleccionada && `Modalidad: ${modalidadSeleccionada}`,
+        `Superficie solicitada: ${m2Numero} m²`,
+        m2Numero < servicio.minimoM2 && `Superficie mínima considerada: ${servicio.minimoM2} m²`,
+        `Rango estimado: ${formatearCLP(resultado.minimo)} a ${formatearCLP(resultado.maximo)}`,
+        extrasAplicables.length > 0 && `Extras: ${extrasDisponibles.filter((extra) => extrasAplicables.includes(extra.id)).map((extra) => extra.nombre).join(', ')}`,
+      ].filter(Boolean).join('\n')
+    : ''
+  const whatsappUrl = resultado
+    ? `https://wa.me/${contacto.whatsapp}?text=${encodeURIComponent(mensajeCotizacion)}`
+    : ''
+  const emailSubject = `Cotización: ${servicio?.nombre ?? ''}`
+  const emailUrl = resultado
+    ? `mailto:${contacto.correo}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(mensajeCotizacion)}`
+    : ''
 
   const toggleExtra = (id) => {
     setExtrasSeleccionados((actual) =>
@@ -41,15 +69,14 @@ function Cotizador() {
         <label className="cotizador-campo">
           <span>Servicio</span>
           <select
-            value={servicioIndex}
+            value={selectedServiceId}
             onChange={(e) => {
-              setServicioIndex(e.target.value)
-              setModalidadIndex(0)
+              onServiceChange(e.target.value)
             }}
           >
             <option value="">Selecciona un servicio</option>
-            {servicios.map((s, i) => (
-              <option key={s.nombre} value={i}>{s.nombre}</option>
+            {serviciosCotizables.map((s) => (
+              <option key={s.id} value={s.id}>{s.nombre}</option>
             ))}
           </select>
         </label>
@@ -81,7 +108,7 @@ function Cotizador() {
 
         <div className="cotizador-extras">
           <span>Extras</span>
-          {extras.map((extra) => (
+          {extrasDisponibles.map((extra) => (
             <label key={extra.id} className="cotizador-extra">
               <input
                 type="checkbox"
@@ -117,6 +144,17 @@ function Cotizador() {
             final se define tras una visita técnica gratuita, considerando el estado del
             terreno y los materiales elegidos. No constituye una cotización formal.
           </p>
+
+          <div className="cotizador-acciones">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="cotizador-accion cotizador-accion--whatsapp">
+              <MessageCircle size={18} aria-hidden="true" />
+              Enviar por WhatsApp
+            </a>
+            <a href={emailUrl} className="cotizador-accion cotizador-accion--correo">
+              <Mail size={18} aria-hidden="true" />
+              Enviar por correo
+            </a>
+          </div>
         </div>
       )}
     </div>
