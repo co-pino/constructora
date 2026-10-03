@@ -26,3 +26,11 @@
   margin: 0;
   padding: 0;
 }
+
+
+
+/* MEDIOS DE PAGO */
+.home-section--pagos {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}

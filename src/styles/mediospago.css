@@ -1,0 +1,42 @@
+.medios-pago {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  background-color: #FAFAFA;
+  border-radius: 10px;
+}
+
+.medios-pago-texto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.medios-pago-texto p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.medios-pago-logos {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.medios-pago-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .medios-pago {
+    flex-direction: column;
+    text-align: center;
+  }
+}

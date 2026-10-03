@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Mail, MessageCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+import { Mail, MessageCircle, Send } from 'lucide-react'
 import { servicios, extras } from '../../data/servicios'
 import { calcularRangoBase, aplicarExtras, formatearCLP } from '../../utils/calculadora-cotizacion'
 import { contacto } from '../../data/contacto'
@@ -9,6 +10,8 @@ function Cotizador({ selectedServiceId, onServiceChange }) {
   const [modalidadIndex, setModalidadIndex] = useState(0)
   const [metrosCuadrados, setMetrosCuadrados] = useState('')
   const [extrasSeleccionados, setExtrasSeleccionados] = useState([])
+  const [datosContacto, setDatosContacto] = useState({ nombre: '', correo: '', empresaWeb: '' })
+  const [estadoEnvioCorreo, setEstadoEnvioCorreo] = useState('idle') // idle | enviando | exito | error
 
   const serviciosCotizables = servicios.filter((item) => item.cotizable !== false)
   const servicio = serviciosCotizables.find((item) => item.id === selectedServiceId) ?? null
@@ -34,27 +37,60 @@ function Cotizador({ selectedServiceId, onServiceChange }) {
   const modalidadSeleccionada = tieneModalidades ? servicio.modalidades[modalidadIndex].nombre : null
   const mensajeCotizacion = resultado
     ? [
-        'Hola, quiero solicitar una cotización para mi proyecto.',
-        `Servicio: ${servicio.nombre}`,
-        modalidadSeleccionada && `Modalidad: ${modalidadSeleccionada}`,
-        `Superficie solicitada: ${m2Numero} m²`,
-        m2Numero < servicio.minimoM2 && `Superficie mínima considerada: ${servicio.minimoM2} m²`,
-        `Rango estimado: ${formatearCLP(resultado.minimo)} a ${formatearCLP(resultado.maximo)}`,
-        extrasAplicables.length > 0 && `Extras: ${extrasDisponibles.filter((extra) => extrasAplicables.includes(extra.id)).map((extra) => extra.nombre).join(', ')}`,
-      ].filter(Boolean).join('\n')
+      'Hola, quiero solicitar una cotización para mi proyecto.',
+      `Servicio: ${servicio.nombre}`,
+      modalidadSeleccionada && `Modalidad: ${modalidadSeleccionada}`,
+      `Superficie solicitada: ${m2Numero} m²`,
+      m2Numero < servicio.minimoM2 && `Superficie mínima considerada: ${servicio.minimoM2} m²`,
+      `Rango estimado: ${formatearCLP(resultado.minimo)} a ${formatearCLP(resultado.maximo)}`,
+      extrasAplicables.length > 0 && `Extras: ${extrasDisponibles.filter((extra) => extrasAplicables.includes(extra.id)).map((extra) => extra.nombre).join(', ')}`,
+    ].filter(Boolean).join('\n')
     : ''
+
   const whatsappUrl = resultado
     ? `https://wa.me/${contacto.whatsapp}?text=${encodeURIComponent(mensajeCotizacion)}`
-    : ''
-  const emailSubject = `Cotización: ${servicio?.nombre ?? ''}`
-  const emailUrl = resultado
-    ? `mailto:${contacto.correo}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(mensajeCotizacion)}`
     : ''
 
   const toggleExtra = (id) => {
     setExtrasSeleccionados((actual) =>
       actual.includes(id) ? actual.filter((e) => e !== id) : [...actual, id]
     )
+  }
+
+  const handleDatosContactoChange = (e) => {
+    const { name, value } = e.target
+    setDatosContacto((actual) => ({ ...actual, [name]: value }))
+  }
+
+  const handleEnviarCorreo = async (e) => {
+    e.preventDefault()
+
+    // HONEYPOT PARA LOS BOTS, IGUAL QUE EN EL OTRO FORMULARIO
+    if (datosContacto.empresaWeb) {
+      return
+    }
+
+    setEstadoEnvioCorreo('enviando')
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          nombre: datosContacto.nombre,
+          correo: datosContacto.correo,
+          telefono: '',
+          servicio: servicio.nombre,
+          mensaje: mensajeCotizacion,
+        },
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      )
+      setEstadoEnvioCorreo('exito')
+      setDatosContacto({ nombre: '', correo: '', empresaWeb: '' })
+    } catch (error) {
+      console.error('Error al enviar la cotización por correo:', error)
+      setEstadoEnvioCorreo('error')
+    }
   }
 
   return (
@@ -68,12 +104,7 @@ function Cotizador({ selectedServiceId, onServiceChange }) {
       <div className="cotizador-form">
         <label className="cotizador-campo">
           <span>Servicio</span>
-          <select
-            value={selectedServiceId}
-            onChange={(e) => {
-              onServiceChange(e.target.value)
-            }}
-          >
+          <select value={selectedServiceId} onChange={(e) => onServiceChange(e.target.value)}>
             <option value="">Selecciona un servicio</option>
             {serviciosCotizables.map((s) => (
               <option key={s.id} value={s.id}>{s.nombre}</option>
@@ -84,10 +115,7 @@ function Cotizador({ selectedServiceId, onServiceChange }) {
         {tieneModalidades && (
           <label className="cotizador-campo">
             <span>Modalidad</span>
-            <select
-              value={modalidadIndex}
-              onChange={(e) => setModalidadIndex(Number(e.target.value))}
-            >
+            <select value={modalidadIndex} onChange={(e) => setModalidadIndex(Number(e.target.value))}>
               {servicio.modalidades.map((m, i) => (
                 <option key={m.nombre} value={i}>{m.nombre}</option>
               ))}
@@ -145,16 +173,56 @@ function Cotizador({ selectedServiceId, onServiceChange }) {
             terreno y los materiales elegidos. No constituye una cotización formal.
           </p>
 
-          <div className="cotizador-acciones">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="cotizador-accion cotizador-accion--whatsapp">
-              <MessageCircle size={18} aria-hidden="true" />
-              Enviar por WhatsApp
-            </a>
-            <a href={emailUrl} className="cotizador-accion cotizador-accion--correo">
-              <Mail size={18} aria-hidden="true" />
-              Enviar por correo
-            </a>
-          </div>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="cotizador-accion cotizador-accion--whatsapp">
+            <MessageCircle size={18} aria-hidden="true" />
+            Enviar por WhatsApp
+          </a>
+
+          {estadoEnvioCorreo === 'exito' ? (
+            <p className="cotizador-correo-exito">
+              Cotización enviada, revisa tu correo pronto.
+            </p>
+          ) : (
+            <form className="cotizador-correo-form" onSubmit={handleEnviarCorreo}>
+              <p className="cotizador-correo-label">O recíbela por correo:</p>
+              <div className="cotizador-correo-campos">
+                <input
+                  type="text"
+                  name="empresaWeb"
+                  value={datosContacto.empresaWeb}
+                  onChange={handleDatosContactoChange}
+                  className="formulario-honeypot"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Tu nombre"
+                  value={datosContacto.nombre}
+                  onChange={handleDatosContactoChange}
+                  required
+                />
+                <input
+                  type="email"
+                  name="correo"
+                  placeholder="Tu correo"
+                  value={datosContacto.correo}
+                  onChange={handleDatosContactoChange}
+                  required
+                />
+                <button type="submit" disabled={estadoEnvioCorreo === 'enviando'}>
+                  <Send size={16} />
+                  {estadoEnvioCorreo === 'enviando' ? 'Enviando...' : 'Enviar'}
+                </button>
+              </div>
+              {estadoEnvioCorreo === 'error' && (
+                <p className="cotizador-correo-error">No se pudo enviar, intenta de nuevo.</p>
+              )}
+            </form>
+          )}
         </div>
       )}
     </div>

@@ -201,3 +201,90 @@
     flex-direction: column;
   }
 }
+
+
+
+
+/* DERIVAR CASO A CORREO O WHATSAPP */
+
+.cotizador-correo-form {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-gray-light);
+}
+
+.cotizador-correo-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0 0 0.6rem;
+}
+
+.cotizador-correo-campos {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cotizador-correo-campos input {
+  flex: 1;
+  min-width: 140px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+}
+
+.cotizador-correo-campos button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cotizador-correo-campos button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cotizador-correo-exito {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-gray-light);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: #1a7a3c;
+  text-align: center;
+}
+
+.cotizador-correo-error {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #c0392b;
+  margin: 0.5rem 0 0;
+}
+
+.cotizador-accion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #25d366;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
