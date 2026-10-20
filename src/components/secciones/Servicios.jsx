@@ -1,4 +1,5 @@
 import TarjetaServicios from '../TarjetaServicios'
+import ScrollReveal from '../ScrollReveal'
 import { servicios } from '../../data/servicios'
 import '../../styles/servicios.css'
 
@@ -12,8 +13,10 @@ function Servicios({ onQuote }) {
       </p>
 
       <div className="servicios-grid">
-        {servicios.map((servicio) => (
-          <TarjetaServicios key={servicio.id} {...servicio} onQuote={onQuote} />
+        {servicios.map((servicio, index) => (
+          <ScrollReveal key={servicio.id} delay={index * 0.08}>
+            <TarjetaServicios {...servicio} onQuote={onQuote} />
+          </ScrollReveal>
         ))}
       </div>
     </div>

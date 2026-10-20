@@ -4,7 +4,7 @@
   --color-gray-light: #D6D6D6;
   --color-white: #FFFFFF;
   --color-dark: #1A1A1A;
-  --color-primary-text: #C97A0A; 
+  --color-primary-text: #A85700;
 
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -45,8 +45,11 @@ a {
 }
 
 button:focus-visible,
-a:focus-visible {
-  outline: 3px solid var(--color-primary);
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary-text);
   outline-offset: 3px;
 }
 

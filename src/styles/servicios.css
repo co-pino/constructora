@@ -35,7 +35,7 @@
 
 .servicios-eyebrow {
   font-family: var(--font-body);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -62,4 +62,12 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.75rem;
   text-align: left;
+}
+
+.servicios-grid > * {
+  height: 100%;
+}
+
+.servicios-grid .tarjeta-servicio {
+  height: 100%;
 }

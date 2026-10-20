@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { Mail, MessageCircle, Send } from 'lucide-react'
+import { MessageCircle, Send } from 'lucide-react'
 import { servicios, extras } from '../../data/servicios'
 import { calcularRangoBase, aplicarExtras, formatearCLP } from '../../utils/calculadora-cotizacion'
 import { contacto } from '../../data/contacto'

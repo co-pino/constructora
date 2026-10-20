@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ScrollReveal from './ScrollReveal'
 import { categoriasProyectos, proyectos } from '../data/proyectos'
 import '../styles/galeria.css'
 
@@ -32,13 +33,15 @@ function Galeria() {
 
       <div className="galeria-grid">
         {proyectosFiltrados.map((proyecto) => (
-          <div key={proyecto.id} className="galeria-item">
-            <img src={proyecto.imagen} alt={proyecto.titulo} loading="lazy" />
-            <div className="galeria-item-overlay">
-              <p className="galeria-item-categoria">{proyecto.categoria}</p>
-              <p className="galeria-item-titulo">{proyecto.titulo}</p>
+          <ScrollReveal key={proyecto.id} className="galeria-reveal">
+            <div className="galeria-item">
+              <img src={proyecto.imagen} alt={proyecto.titulo} loading="lazy" />
+              <div className="galeria-item-overlay">
+                <p className="galeria-item-categoria">{proyecto.categoria}</p>
+                <p className="galeria-item-titulo">{proyecto.titulo}</p>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </div>

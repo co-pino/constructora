@@ -8,7 +8,7 @@ function MediosPago() {
   return (
     <div className="medios-pago">
       <div className="medios-pago-texto">
-        <ShieldCheck size={22} color="var(--color-primary)" aria-hidden="true" />
+        <ShieldCheck size={22} color="var(--color-primary-text)" aria-hidden="true" />
         <p>Aceptamos pagos seguros con tarjeta a través de Flow</p>
       </div>
 

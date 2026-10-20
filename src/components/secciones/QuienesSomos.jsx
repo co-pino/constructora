@@ -1,4 +1,5 @@
 import { ShieldCheck, Clock, Users } from 'lucide-react'
+import ScrollReveal from '../ScrollReveal'
 import aboutImg from '../../assets/trabajando.jpg'
 import '../../styles/quienessomos.css'
 
@@ -23,33 +24,37 @@ const valores = [
 function QuienesSomos() {
   return (
     <div className="quienes-somos">
-      <div className="quienes-somos-imagen">
-        <img src={aboutImg} alt="Equipo de la constructora trabajando en obra" />
-      </div>
+      <ScrollReveal className="quienes-somos-reveal" delay={0.05}>
+        <div className="quienes-somos-imagen">
+          <img src={aboutImg} alt="Equipo de la constructora trabajando en obra" />
+        </div>
+      </ScrollReveal>
 
-      <div className="quienes-somos-contenido">
-        <p className="quienes-somos-eyebrow">Quiénes somos</p>
-        <h2 className="quienes-somos-titulo">
-          Construimos con responsabilidad desde 2018
-        </h2>
-        <p className="quienes-somos-texto">
-          Somos una constructora enfocada en viviendas, ampliaciones y
-          remodelaciones, trabajando siempre con profesionales a cargo y
-          cumplimiento de la normativa correspondiente a cada proyecto.
-        </p>
+      <ScrollReveal className="quienes-somos-reveal" delay={0.15}>
+        <div className="quienes-somos-contenido">
+          <p className="quienes-somos-eyebrow">Quiénes somos</p>
+          <h2 className="quienes-somos-titulo">
+            Construimos con responsabilidad desde 2018
+          </h2>
+          <p className="quienes-somos-texto">
+            Somos una constructora enfocada en viviendas, ampliaciones y
+            remodelaciones, trabajando siempre con profesionales a cargo y
+            cumplimiento de la normativa correspondiente a cada proyecto.
+          </p>
 
-        <ul className="quienes-somos-valores">
-          {valores.map(({ icono: Icono, titulo, texto }) => (
-            <li key={titulo}>
-              <Icono size={22} color="var(--color-primary)" />
-              <div>
-                <strong>{titulo}</strong>
-                <p>{texto}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <ul className="quienes-somos-valores">
+            {valores.map(({ icono: Icono, titulo, texto }) => (
+              <li key={titulo}>
+                <Icono size={22} color="var(--color-primary-text)" />
+                <div>
+                  <strong>{titulo}</strong>
+                  <p>{texto}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ScrollReveal>
     </div>
   )
 }

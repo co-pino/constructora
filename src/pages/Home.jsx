@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ScrollReveal from '../components/ScrollReveal'
 import Hero from '../components/secciones/Hero'
 import QuienesSomos from "../components/secciones/QuienesSomos"
 import Servicios from '../components/secciones/Servicios'
@@ -32,11 +33,13 @@ function Home() {
                 </section>
 
                 <section id="cotizador" className="home-section home-section--light">
-                    <Cotizador
-                        key={selectedServiceId || 'ningun-servicio'}
-                        selectedServiceId={selectedServiceId}
-                        onServiceChange={setSelectedServiceId}
-                    />
+                    <ScrollReveal>
+                        <Cotizador
+                            key={selectedServiceId || 'ningun-servicio'}
+                            selectedServiceId={selectedServiceId}
+                            onServiceChange={setSelectedServiceId}
+                        />
+                    </ScrollReveal>
                 </section>
 
                 <section id="contacto" className="home-section">

@@ -74,8 +74,7 @@
 .formulario-campo input:focus,
 .formulario-campo select:focus,
 .formulario-campo textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-text);
 }
 
 .formulario-submit {
@@ -87,7 +86,7 @@
   justify-content: center;
   gap: 0.5rem;
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-dark);
   border: none;
   padding: 0.85rem 1.5rem;
   border-radius: 6px;
@@ -196,4 +195,3 @@
   color: #c0392b;
   margin-top: 0.1rem;
 }
-

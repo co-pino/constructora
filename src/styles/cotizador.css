@@ -4,7 +4,7 @@
 
 .cotizador-eyebrow {
   font-family: var(--font-body);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -65,8 +65,7 @@
 
 .cotizador-campo select:focus,
 .cotizador-campo input[type="number"]:focus {
-  outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-text);
 }
 
 .cotizador-extras {
